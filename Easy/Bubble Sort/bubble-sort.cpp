@@ -21,14 +21,23 @@ void swap(int *xp, int *yp)
 class Solution
 {
     public:
+    void swapper(int lo, int hi, int arr[], bool &didNotSwap){
+        if(lo==hi) return;
+        int j=lo;
+        if(arr[j]<arr[j-1]){
+            swap(arr[j], arr[j-1]);
+            didNotSwap=0;
+        }
+        swapper(j+1, hi, arr, didNotSwap);
+    }
     //Function to sort the array using bubble sort algorithm.
     void bubbleSort(int arr[], int n)
     {
-        // Your code here  
+        // Your code here 
         for(int i=0; i<n; i++){
-            for(int j=1; j<n-i; j++){
-                if(arr[j]<arr[j-1]) swap(arr[j], arr[j-1]);
-            }
+            bool didNotSwap=1;
+            swapper(1, n-i, arr, didNotSwap);
+            if(didNotSwap) break;
         }
         return;
     }
