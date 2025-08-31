@@ -1,46 +1,22 @@
-//{ Driver Code Starts
-//Initial template for C++
+class Solution {
 
-#include<bits/stdc++.h>
-using namespace std;
-// int maxArea(int A[], int len);
-
-// } Driver Code Ends
-//User function template for C++
-
-long long maxArea(long long A[], int len)
-{
-    // Your code goes here
-    int i=0, j=len-1;
-    long long maxi=0;
-    while(i<=j){
-        maxi=max(maxi, (j-i)*min(A[i], A[j]));
-        if(A[i]>A[j]){
-            j--;
-        }else{
-            i++;
+  public:
+    int maxWater(vector<int> &arr) {
+        // code here
+        int n=arr.size();
+        
+        int maxi=0;
+        int i=0, j=n-1;
+        
+        while(i<j){
+            maxi=max(maxi, min(arr[i], arr[j])*(j-i));
+            if(arr[i]<arr[j]){
+                i++;
+            }else{
+                j--;
+            }
         }
+        
+        return maxi;
     }
-    return maxi;
-}
-
-//{ Driver Code Starts.
-
-// Driver code
-int main()
-{
-	int t;
-	cin>>t;
-	while(t--)
-    {
-        int n;
-        cin>>n;
-        long long arr[n];
-        for(int i=0;i<n;i++)
-            cin>>arr[i];
-        cout<<maxArea(arr,n)<<endl;
-    }
-return 0;
-}
-
-// } Driver Code Ends
+};
